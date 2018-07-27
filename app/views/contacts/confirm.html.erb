@@ -1,0 +1,47 @@
+<div class='container contact'>
+  <h1>Confirmation</h1>
+  
+  <div class='checkfield'>
+    <div class="field">
+      <strong>Your name:</strong>
+      <%= @contact.name %>
+    </div>
+    
+    <div class="field">
+      <strong>Your e-mail address:</strong>
+      <%= @contact.mail %>
+    </div>
+    
+    <div class="field">
+      <strong>Category:</strong>
+      <%= @contact.category %>
+    </div>
+    
+    <div class="field">
+      <strong>Content:</strong>
+      <%= @contact.content %>
+    </div>
+  </div>
+  
+  <div class='row'>
+    <div class='col-md-1'>
+      <%= form_for :contact, url: contacts_new_path do |form| %>
+        <%= form.hidden_field :name %>
+        <%= form.hidden_field :mail %>
+        <%= form.hidden_field :category %>
+        <%= form.hidden_field :content %>
+        <%= form.submit 'Back', class: 'btn btn-light' %>
+      <% end %>
+    </div>
+    
+    <div class='col-md-1'>
+      <%= form_for :contact, url: contacts_thanks_path do |form| %>
+        <%= form.hidden_field :name %>
+        <%= form.hidden_field :mail %>
+        <%= form.hidden_field :category %>
+        <%= form.hidden_field :content %>
+        <%= form.submit 'Send', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

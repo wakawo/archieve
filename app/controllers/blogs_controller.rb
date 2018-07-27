@@ -4,18 +4,23 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+     @blogs = Blog.index_all.page(params[:page])
   end
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    binding.pry
+    @comments = @blog.comments
+    @comment = Comment.new
   end
 
   # GET /blogs/new
   def new
-    @blog = Blog.new
+    if user_signed_in?
+      @blog = Blog.new
+    else
+      redirect_to blogs_path, notice: 'Login is needed.'
+    end
   end
 
   # GET /blogs/1/edit
@@ -26,9 +31,11 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
-
+    @blog.user_id = current_user.id
+    
     respond_to do |format|
       if @blog.save
+        NoticeMailer.sendmail_blog(@blog).deliver
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else

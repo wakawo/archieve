@@ -51,6 +51,12 @@ group :development do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  
+  # DAY11 addition
+  gem 'letter_opener_web', '~> 1.0'
+  
+  # DAY16 addition
+  gem 'bullet'
 end
 
 group :test do
@@ -65,6 +71,19 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-# DAY10 add
+# DAY10 addition
 gem 'dotenv-rails'
 gem 'rails_12factor', group: :production
+
+# DAY13 addition
+gem 'devise'
+
+# DAY14 addition
+gem 'carrierwave', '~> 1.0'
+gem 'rmagick'
+
+# DAY15 addition
+gem 'twitter-bootstrap-rails'
+
+# DAY16 addition
+gem 'kaminari'
